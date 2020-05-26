@@ -23,7 +23,7 @@ class HfaApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 theme:
                     ThemeData(primarySwatch: Colors.blue, fontFamily: 'Gilroy'),
-                title: 'HFA App',
+                title: 'HFA Uygulaması',
                 initialRoute: AppConstant.pageSignUpFirst,
                 routes: {
                   AppConstant.pageSignUpFirst: (context) => SignupPageFirst(),
