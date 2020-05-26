@@ -4,20 +4,107 @@ import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
 import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
 
+import '../../utils/app_constant.dart';
+import '../../utils/app_constant.dart';
+
 class SignupPageFirst extends StatefulWidget {
   @override
   _SignupPageFirstState createState() => _SignupPageFirstState();
 }
 
 class _SignupPageFirstState extends State<SignupPageFirst> {
+  TextFormField adField;
+  TextFormField soyadField;
+  final FocusNode adFocus = FocusNode();
+  final FocusNode soyadFocus = FocusNode();
+  final adController = TextEditingController();
+  final soyadController = TextEditingController();
+  bool isAdValid = true;
+  bool isSoyadValid = true;
+
+  TextFormField getAdField() {
+    adField = TextFormField(
+      autofocus: true,
+      controller: adController,
+      textInputAction: TextInputAction.next,
+      focusNode: adFocus,
+      onFieldSubmitted: (term) {
+        adNext();
+      },
+      style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppConstant.grey,
+          fontSize: 3 * SizeConfig.textMultiplier),
+      decoration: InputDecoration(
+          labelText: 'ADI',
+          //      errorText: isAdValid ? null : 'Adınız Giriniz',
+          labelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppConstant.grey,
+              fontSize: 20),
+          focusedBorder:
+              UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+    );
+    return adField;
+  }
+
+  TextFormField getSoyadField() {
+    soyadField = TextFormField(
+      textInputAction: TextInputAction.done,
+      focusNode: soyadFocus,
+      controller: soyadController,
+      onFieldSubmitted: (value) {
+        adNext();
+      },
+      style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppConstant.grey,
+          fontSize: 3 * SizeConfig.textMultiplier),
+      decoration: InputDecoration(
+          labelText: 'SOYAD',
+          //    errorText: isSoyadValid ? null : 'Soyadınız Giriniz',
+          labelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppConstant.grey,
+              fontSize: 20),
+          focusedBorder:
+              UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+    );
+    return soyadField;
+  }
+
+  fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  adNext() {
+    isAdValid = adController.text.isNotEmpty;
+
+    if (adFocus.hasFocus) {
+      fieldFocusChange(context, adFocus, soyadFocus);
+    } else {
+      isSoyadValid = soyadController.text.isNotEmpty;
+      if (isSoyadValid && isAdValid) {
+        soyadFocus.unfocus();
+        Navigator.pushNamed(context, AppConstant.pageSignUpSecond);
+      }
+    }
+    print(isAdValid);
+    print(isSoyadValid);
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig.initByContext(context);
     double width90 = MediaQuery.of(context).size.width * 0.9;
     return ButtomButtonWizard(
-        onNextPressed: () =>
-            {Navigator.pushNamed(context, AppConstant.pageSignUpSecond)},
-        onBackPressed: () => {},
+        onNextPressed: () => adNext(),
+        onBackPressed: () => {
+              if (soyadFocus.hasFocus)
+                {fieldFocusChange(context, soyadFocus, adFocus)}
+            },
         child: new Scaffold(
             resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
@@ -59,8 +146,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                                     SizeConfig.textMultiplier,
                                                 overflow: TextOverflow.fade,
                                                 style: TextStyle(
-                                                    color: Color.fromRGBO(
-                                                        79, 79, 97, 1),
+                                                    color: AppConstant.grey,
                                                     fontSize: 5,
                                                     fontFamily: 'Gilroy',
                                                     fontWeight:
@@ -93,37 +179,12 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                     width: width90,
                                     child: Column(
                                       children: <Widget>[
-                                        TextField(
-                                          autofocus: true,
-                                          decoration: InputDecoration(
-                                              labelText: 'AD',
-                                              labelStyle: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.grey),
-                                              // hintText: 'EMAIL',
-                                              // hintStyle: ,
-                                              focusedBorder:
-                                                  UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.blue))),
-                                        ),
+                                        getAdField(),
                                         SizedBox(
                                           height:
                                               2 * SizeConfig.heightMultiplier,
                                         ),
-                                        TextField(
-                                          decoration: InputDecoration(
-                                              labelText: 'SOYAD',
-                                              labelStyle: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.grey),
-                                              // hintText: 'EMAIL',
-                                              // hintStyle: ,
-                                              focusedBorder:
-                                                  UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.blue))),
-                                        ),
+                                        getSoyadField(),
                                       ],
                                     ),
                                   )
