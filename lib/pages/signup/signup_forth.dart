@@ -3,29 +3,32 @@ import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
 import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class SignupPageSecond extends StatefulWidget {
+class SignupPageForth extends StatefulWidget {
   @override
-  _SignupPageSecondState createState() => _SignupPageSecondState();
+  _SignupPageForthState createState() => _SignupPageForthState();
 }
 
-class _SignupPageSecondState extends State<SignupPageSecond> {
+class _SignupPageForthState extends State<SignupPageForth> {
   TextField textField;
   double width90 = 0;
-  double custFontSize = 5 * SizeConfig.textMultiplier;
-  var textEditingController = TextEditingController();
-  var maskTextInputFormatter = MaskTextInputFormatter(
-      mask: "X###", filter: {"#": RegExp(r'[0-9]'), "X": RegExp(r'[1-2]')});
+  double custFontSize = 8 * SizeConfig.textMultiplier;
+  double initialFontSize = 8 * SizeConfig.textMultiplier;
+  double tryCount = 0;
+
+  void changeFontSize(size) async {
+    setState(() {
+      custFontSize = size;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig.initByContext(context);
-    double width90 = MediaQuery.of(context).size.width * 0.9;
+    width90 = MediaQuery.of(context).size.width * 0.9;
     return ButtomButtonWizard(
-        onNextPressed: () =>
-            {Navigator.pushNamed(context, AppConstant.pageSignUpThird)},
         onBackPressed: () => {Navigator.pop(context)},
+        onNextPressed: () =>
+            {Navigator.pushNamed(context, AppConstant.pageSignUpFifth)},
         child: new Scaffold(
             resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
@@ -54,12 +57,13 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
                                               0,
                                               0),
                                           child: Text(
-                                            'Doğum Tarihiniz',
-                                            maxLines: 1,
+                                            'Lütfen E-Mail Adresinizi Giriniz',
+                                            maxLines: 3,
                                             softWrap: false,
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.ellipsis,
                                             textScaleFactor:
                                                 SizeConfig.textMultiplier,
-                                            overflow: TextOverflow.fade,
                                             style: TextStyle(
                                                 color: Color.fromRGBO(
                                                     79, 79, 97, 1),
@@ -79,7 +83,7 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
                                 child: Column(
                                   children: <Widget>[getField()],
                                 ),
-                              ),
+                              )
                             ]))
                   ],
                 ))));
@@ -87,13 +91,11 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
 
   TextField getField() {
     textField = TextField(
-      keyboardType: TextInputType.datetime,
-      controller: textEditingController,
-      autocorrect: false,
-      inputFormatters: [maskTextInputFormatter],
+      keyboardType: TextInputType.emailAddress,
       autofocus: true,
       onChanged: (text) {
-        _calculateFontSize('+' + text);
+        tryCount = 0;
+        _calculateFontSize(text);
         print("First text field: $text");
       },
       style: TextStyle(
@@ -102,11 +104,13 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
         fontSize: custFontSize,
       ),
       decoration: InputDecoration(
-          labelText: 'YIL',
+          labelText: 'EMAIL',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 3 * SizeConfig.textMultiplier,
               color: Color.fromRGBO(79, 79, 97, 1)),
+          // hintText: 'EMAIL',
+          // hintStyle: ,
           focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.white))),
     );
@@ -114,10 +118,11 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
   }
 
   void _calculateFontSize(key) {
+    if (key.toString().length < 10) changeFontSize(initialFontSize);
     var wordWrapTp = TextPainter(
       text: TextSpan(
         style: textField.style,
-        text: key,
+        text: '@@' + key,
       ),
       textAlign: textField.textAlign ?? TextAlign.left,
       textDirection: textField.textDirection ?? TextDirection.ltr,
@@ -131,6 +136,12 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
     print('2-' + width90.toString());
     print('3-' + wordWrapTp.didExceedMaxLines.toString());
     bool isExceed = wordWrapTp.didExceedMaxLines || wordWrapTp.width > width90;
-    if (isExceed && custFontSize > 9) {}
+    if (isExceed) {
+      changeFontSize(custFontSize / 1.1);
+      tryCount++;
+      if (tryCount < 11) {
+        _calculateFontSize(key);
+      }
+    }
   }
 }

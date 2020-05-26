@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ticaret_hfa_mobile/pages/signup/signup_fourth.dart';
+import 'package:ticaret_hfa_mobile/pages/signup/signup_first.dart';
+import 'package:ticaret_hfa_mobile/pages/signup/signup_fifth.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_second.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_third.dart';
+import 'package:ticaret_hfa_mobile/pages/signup/signup_forth.dart';
 
-import 'pages/signup/signup_first.dart';
+import 'pages/signup/signup_second.dart';
+import 'pages/signup/signup_third.dart';
 import 'utils/app_constant.dart';
 import 'utils/size_config.dart';
 
@@ -29,7 +32,8 @@ class HfaApp extends StatelessWidget {
                   AppConstant.pageSignUpFirst: (context) => SignupPageFirst(),
                   AppConstant.pageSignUpSecond: (context) => SignupPageSecond(),
                   AppConstant.pageSignUpThird: (context) => SignupPageThird(),
-                  AppConstant.pageSignUpFourth: (context) => SignupPageFourth(),
+                  AppConstant.pageSignUpFourth: (context) => SignupPageForth(),
+                  AppConstant.pageSignUpFifth: (context) => SignupPageFifth(),
                 });
           },
         );

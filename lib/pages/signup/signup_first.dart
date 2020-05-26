@@ -89,7 +89,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                     TextField(
                                       autofocus: true,
                                       decoration: InputDecoration(
-                                          labelText: 'Ad',
+                                          labelText: 'AD',
                                           labelStyle: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.grey),
@@ -104,7 +104,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                     ),
                                     TextField(
                                       decoration: InputDecoration(
-                                          labelText: 'Soyad',
+                                          labelText: 'SOYAD',
                                           labelStyle: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.grey),

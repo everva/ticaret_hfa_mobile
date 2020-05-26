@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
 import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class SignupPageSecond extends StatefulWidget {
+class SignupPageFifth extends StatefulWidget {
   @override
-  _SignupPageSecondState createState() => _SignupPageSecondState();
+  _SignupPageFifthState createState() => _SignupPageFifthState();
 }
 
-class _SignupPageSecondState extends State<SignupPageSecond> {
+class _SignupPageFifthState extends State<SignupPageFifth> {
   TextField textField;
   double width90 = 0;
   double custFontSize = 5 * SizeConfig.textMultiplier;
   var textEditingController = TextEditingController();
   var maskTextInputFormatter = MaskTextInputFormatter(
-      mask: "X###", filter: {"#": RegExp(r'[0-9]'), "X": RegExp(r'[1-2]')});
+      mask: "### ### ## ##", filter: {"#": RegExp(r'[0-9]')});
+
+  void changeFontSize(size) async {
+    setState(() {
+      custFontSize = size;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig.initByContext(context);
-    double width90 = MediaQuery.of(context).size.width * 0.9;
+    width90 = MediaQuery.of(context).size.width * 0.9;
     return ButtomButtonWizard(
-        onNextPressed: () =>
-            {Navigator.pushNamed(context, AppConstant.pageSignUpThird)},
+        onNextPressed: () => {},
         onBackPressed: () => {Navigator.pop(context)},
-        child: new Scaffold(
+        child: Scaffold(
             resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
             body: Container(
@@ -54,12 +57,13 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
                                               0,
                                               0),
                                           child: Text(
-                                            'Doğum Tarihiniz',
-                                            maxLines: 1,
+                                            'Lütfen Cep Telefonu Numaranızı Giriniz',
+                                            maxLines: 3,
                                             softWrap: false,
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.ellipsis,
                                             textScaleFactor:
                                                 SizeConfig.textMultiplier,
-                                            overflow: TextOverflow.fade,
                                             style: TextStyle(
                                                 color: Color.fromRGBO(
                                                     79, 79, 97, 1),
@@ -77,8 +81,40 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
                                     0, 0, 0, 2 * SizeConfig.textMultiplier),
                                 width: width90,
                                 child: Column(
-                                  children: <Widget>[getField()],
+                                  children: <Widget>[
+                                    getField(),
+                                    SizedBox(
+                                      height: 2 * SizeConfig.heightMultiplier,
+                                    )
+                                  ],
                                 ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Flexible(
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              3 * SizeConfig.widthMultiplier,
+                                              0,
+                                              0,
+                                              0),
+                                          child: Text(
+                                            '* SMS Gönderilecektir.',
+                                            maxLines: 3,
+                                            softWrap: false,
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.ellipsis,
+                                            textScaleFactor:
+                                                SizeConfig.textMultiplier,
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    79, 79, 97, 0.5),
+                                                fontSize: 2,
+                                                fontFamily: 'Gilroy',
+                                                fontWeight: FontWeight.bold),
+                                          ))),
+                                ],
                               ),
                             ]))
                   ],
@@ -87,7 +123,7 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
 
   TextField getField() {
     textField = TextField(
-      keyboardType: TextInputType.datetime,
+      keyboardType: TextInputType.phone,
       controller: textEditingController,
       autocorrect: false,
       inputFormatters: [maskTextInputFormatter],
@@ -102,11 +138,12 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
         fontSize: custFontSize,
       ),
       decoration: InputDecoration(
-          labelText: 'YIL',
+          labelText: 'CEP TELEFONU',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 3 * SizeConfig.textMultiplier,
               color: Color.fromRGBO(79, 79, 97, 1)),
+          prefixText: '+90 ',
           focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.white))),
     );
@@ -131,6 +168,8 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
     print('2-' + width90.toString());
     print('3-' + wordWrapTp.didExceedMaxLines.toString());
     bool isExceed = wordWrapTp.didExceedMaxLines || wordWrapTp.width > width90;
-    if (isExceed && custFontSize > 9) {}
+    if (isExceed && custFontSize > 9) {
+      changeFontSize(custFontSize / 1.2);
+    }
   }
 }
