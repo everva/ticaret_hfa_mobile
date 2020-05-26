@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 
 class ButtomButtonWizard extends StatefulWidget {
   final Widget child;
@@ -36,7 +35,7 @@ class _ButtomButtonWizardState extends State<ButtomButtonWizard> {
                   height: 50,
                   child: FlatButton(
                       onPressed: () {
-                        widget.onNextPressed();
+                        widget.onBackPressed();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +43,7 @@ class _ButtomButtonWizardState extends State<ButtomButtonWizard> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Icon(
-                            Icons.keyboard_arrow_down,
+                            Icons.keyboard_arrow_left,
                             size: 30,
                           ),
                           Text('Geri!', style: TextStyle(fontSize: 20))
@@ -69,7 +68,7 @@ class _ButtomButtonWizardState extends State<ButtomButtonWizard> {
                         children: <Widget>[
                           Text('İleri', style: TextStyle(fontSize: 20)),
                           Icon(
-                            Icons.keyboard_arrow_up,
+                            Icons.keyboard_arrow_right,
                             size: 30,
                           ),
                         ],

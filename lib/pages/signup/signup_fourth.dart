@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
 
@@ -28,8 +27,7 @@ class _SignupPageFourthState extends State<SignupPageFourth> {
     width90 = MediaQuery.of(context).size.width * 0.9;
     return ButtomButtonWizard(
         onNextPressed: () => {},
-        onBackPressed: () =>
-            {Navigator.pushNamed(context, AppConstant.pageSignUpThird)},
+        onBackPressed: () => {Navigator.pop(context)},
         child: Scaffold(
             resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
@@ -125,8 +123,7 @@ class _SignupPageFourthState extends State<SignupPageFourth> {
       inputFormatters: [maskTextInputFormatter],
       autofocus: true,
       onChanged: (text) {
-        bool val = _calculateFontSize('+' + text);
-        print('val : ' + val.toString());
+        _calculateFontSize('+' + text);
         print("First text field: $text");
       },
       style: TextStyle(
@@ -147,7 +144,7 @@ class _SignupPageFourthState extends State<SignupPageFourth> {
     return textField;
   }
 
-  bool _calculateFontSize(key) {
+  void _calculateFontSize(key) {
     var wordWrapTp = TextPainter(
       text: TextSpan(
         style: textField.style,

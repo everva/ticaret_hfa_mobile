@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
+import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
 
 class SignupPageSecond extends StatefulWidget {
   @override
@@ -25,61 +26,65 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
     return ButtomButtonWizard(
         onNextPressed: () =>
             {Navigator.pushNamed(context, AppConstant.pageSignUpThird)},
-        onBackPressed: () =>
-            {Navigator.pushNamed(context, AppConstant.pageSignUpFirst)},
+        onBackPressed: () => {Navigator.pop(context)},
         child: new Scaffold(
             resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.white,
             body: Container(
                 width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.fromLTRB(
-                        1.5 * SizeConfig.heightMultiplier,
-                        8 * SizeConfig.heightMultiplier,
-                        0.0,
-                        0.0),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                child: Column(
+                  children: <Widget>[
+                    TopClipShape(),
+                    SingleChildScrollView(
+                        padding: EdgeInsets.fromLTRB(
+                            1.5 * SizeConfig.heightMultiplier,
+                            0 * SizeConfig.heightMultiplier,
+                            0.0,
+                            0.0),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Flexible(
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(
-                                          3 * SizeConfig.widthMultiplier,
-                                          0,
-                                          0,
-                                          0),
-                                      child: Text(
-                                        'Lütfen T.C. Kimlik Numaranızı Giriniz',
-                                        maxLines: 3,
-                                        softWrap: false,
-                                        textAlign: TextAlign.start,
-                                        overflow: TextOverflow.ellipsis,
-                                        textScaleFactor:
-                                            SizeConfig.textMultiplier,
-                                        style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(79, 79, 97, 1),
-                                            fontSize: 5,
-                                            fontFamily: 'Gilroy',
-                                            fontWeight: FontWeight.w100),
-                                      ))),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 2 * SizeConfig.heightMultiplier,
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(
-                                0, 0, 0, 2 * SizeConfig.textMultiplier),
-                            width: width90,
-                            child: Column(
-                              children: <Widget>[getField()],
-                            ),
-                          )
-                        ])))));
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Flexible(
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              3 * SizeConfig.widthMultiplier,
+                                              0,
+                                              0,
+                                              0),
+                                          child: Text(
+                                            'Lütfen T.C. Kimlik Numaranızı Giriniz',
+                                            maxLines: 3,
+                                            softWrap: false,
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.ellipsis,
+                                            textScaleFactor:
+                                                SizeConfig.textMultiplier,
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    79, 79, 97, 1),
+                                                fontSize: 5,
+                                                fontFamily: 'Gilroy',
+                                                fontWeight: FontWeight.w100),
+                                          ))),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 2 * SizeConfig.heightMultiplier,
+                              ),
+                              Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    0, 0, 0, 2 * SizeConfig.textMultiplier),
+                                width: width90,
+                                child: Column(
+                                  children: <Widget>[getField()],
+                                ),
+                              )
+                            ]))
+                  ],
+                ))));
   }
 
   TextField getField() {
@@ -87,8 +92,7 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
       keyboardType: TextInputType.number,
       maxLength: 11,
       onChanged: (text) {
-        bool val = _calculateFontSize('+' + text);
-        print('val : ' + val.toString());
+        _calculateFontSize('+' + text);
         print("First text field: $text");
       },
       autofocus: true,
@@ -111,7 +115,7 @@ class _SignupPageSecondState extends State<SignupPageSecond> {
     return textField;
   }
 
-  bool _calculateFontSize(key) {
+  void _calculateFontSize(key) {
     var wordWrapTp = TextPainter(
       text: TextSpan(
         style: textField.style,

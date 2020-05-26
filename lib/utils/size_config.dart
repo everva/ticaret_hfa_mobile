@@ -13,6 +13,12 @@ class SizeConfig {
   static bool isPortrait = true;
   static bool isMobilePortrait = false;
 
+  static bool large = false;
+  static bool medium = false;
+  static double height;
+  static double width;
+  static double pixelRatio;
+
   void init(BoxConstraints constraints, Orientation orientation) {
     if (orientation == Orientation.portrait) {
       _screenWidth = constraints.maxWidth;
@@ -38,5 +44,26 @@ class SizeConfig {
 
     print(_blockSizeHorizontal);
     print(_blockSizeVertical);
+  }
+
+  static initByContext(BuildContext context) {
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    pixelRatio = MediaQuery.of(context).devicePixelRatio;
+
+    large = isScreenLarge(width, pixelRatio);
+    medium = isScreenMedium(width, pixelRatio);
+  }
+
+  static bool isScreenLarge(double width, double pixel) {
+    return width * pixel >= 1440;
+  }
+
+  static bool isScreenMedium(double width, double pixel) {
+    return width * pixel < 1440 && width * pixel >= 1080;
+  }
+
+  static bool isScreenSmall(double width, double pixel) {
+    return width * pixel <= 720;
   }
 }

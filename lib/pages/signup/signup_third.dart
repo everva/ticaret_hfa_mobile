@@ -24,8 +24,7 @@ class _SignupPageThirdState extends State<SignupPageThird> {
   Widget build(BuildContext context) {
     width90 = MediaQuery.of(context).size.width * 0.9;
     return ButtomButtonWizard(
-        onBackPressed: () =>
-            {Navigator.pushNamed(context, AppConstant.pageSignUpSecond)},
+        onBackPressed: () => {Navigator.pop(context)},
         onNextPressed: () =>
             {Navigator.pushNamed(context, AppConstant.pageSignUpFourth)},
         child: new Scaffold(
@@ -88,8 +87,7 @@ class _SignupPageThirdState extends State<SignupPageThird> {
       keyboardType: TextInputType.emailAddress,
       autofocus: true,
       onChanged: (text) {
-        bool val = _calculateFontSize(text);
-        print('val : ' + val.toString());
+        _calculateFontSize(text);
         print("First text field: $text");
       },
       style: TextStyle(
@@ -111,7 +109,7 @@ class _SignupPageThirdState extends State<SignupPageThird> {
     return textField;
   }
 
-  bool _calculateFontSize(key) {
+  void _calculateFontSize(key) {
     var wordWrapTp = TextPainter(
       text: TextSpan(
         style: textField.style,
