@@ -26,98 +26,110 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                 child: Column(
                   children: <Widget>[
                     TopClipShape(),
-                    SingleChildScrollView(
-                        padding: EdgeInsets.fromLTRB(
-                            1.5 * SizeConfig.heightMultiplier,
-                            0 * SizeConfig.heightMultiplier,
-                            0.0,
-                            0.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                    Expanded(
+                        child: new ListView(
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        SingleChildScrollView(
+                            padding: EdgeInsets.fromLTRB(
+                                1.5 * SizeConfig.heightMultiplier,
+                                0 * SizeConfig.heightMultiplier,
+                                0.0,
+                                0.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Flexible(
-                                      child: Padding(
-                                          padding: EdgeInsets.fromLTRB(
-                                              3 * SizeConfig.widthMultiplier,
-                                              0,
-                                              0,
-                                              0),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Flexible(
+                                          child: Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  3 *
+                                                      SizeConfig
+                                                          .widthMultiplier,
+                                                  0,
+                                                  0,
+                                                  0),
+                                              child: Text(
+                                                'Kişisel Bilgileriniz',
+                                                maxLines: 1,
+                                                softWrap: false,
+                                                textScaleFactor:
+                                                    SizeConfig.textMultiplier,
+                                                overflow: TextOverflow.fade,
+                                                style: TextStyle(
+                                                    color: Color.fromRGBO(
+                                                        79, 79, 97, 1),
+                                                    fontSize: 5,
+                                                    fontFamily: 'Gilroy',
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                              ))),
+                                      Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 0, 0,
+                                              2 * SizeConfig.textMultiplier),
                                           child: Text(
-                                            'Kişisel Bilgileriniz',
+                                            ".",
                                             maxLines: 1,
                                             softWrap: false,
+                                            overflow: TextOverflow.fade,
+                                            textAlign: TextAlign.justify,
                                             textScaleFactor:
                                                 SizeConfig.textMultiplier,
-                                            overflow: TextOverflow.fade,
                                             style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    79, 79, 97, 1),
-                                                fontSize: 5,
-                                                fontFamily: 'Gilroy',
-                                                fontWeight: FontWeight.w100),
-                                          ))),
-                                  Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0,
-                                          2 * SizeConfig.textMultiplier),
-                                      child: Text(
-                                        ".",
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.fade,
-                                        textAlign: TextAlign.justify,
-                                        textScaleFactor:
-                                            SizeConfig.textMultiplier,
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: 8),
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 2 * SizeConfig.heightMultiplier,
-                              ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    0, 0, 0, 2 * SizeConfig.textMultiplier),
-                                width: width90,
-                                child: Column(
-                                  children: <Widget>[
-                                    TextField(
-                                      autofocus: true,
-                                      decoration: InputDecoration(
-                                          labelText: 'AD',
-                                          labelStyle: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey),
-                                          // hintText: 'EMAIL',
-                                          // hintStyle: ,
-                                          focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blue))),
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w800,
+                                                fontSize: 8),
+                                          )),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 2 * SizeConfig.heightMultiplier,
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(
+                                        0, 0, 0, 2 * SizeConfig.textMultiplier),
+                                    width: width90,
+                                    child: Column(
+                                      children: <Widget>[
+                                        TextField(
+                                          autofocus: true,
+                                          decoration: InputDecoration(
+                                              labelText: 'AD',
+                                              labelStyle: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey),
+                                              // hintText: 'EMAIL',
+                                              // hintStyle: ,
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.blue))),
+                                        ),
+                                        SizedBox(
+                                          height:
+                                              2 * SizeConfig.heightMultiplier,
+                                        ),
+                                        TextField(
+                                          decoration: InputDecoration(
+                                              labelText: 'SOYAD',
+                                              labelStyle: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey),
+                                              // hintText: 'EMAIL',
+                                              // hintStyle: ,
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.blue))),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 2 * SizeConfig.heightMultiplier,
-                                    ),
-                                    TextField(
-                                      decoration: InputDecoration(
-                                          labelText: 'SOYAD',
-                                          labelStyle: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey),
-                                          // hintText: 'EMAIL',
-                                          // hintStyle: ,
-                                          focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blue))),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ]))
+                                  )
+                                ]))
+                      ],
+                    )),
                   ],
                 ))));
   }
