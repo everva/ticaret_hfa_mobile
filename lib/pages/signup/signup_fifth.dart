@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
 import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
@@ -27,7 +28,8 @@ class _SignupPageFifthState extends State<SignupPageFifth> {
   Widget build(BuildContext context) {
     width90 = MediaQuery.of(context).size.width * 0.9;
     return ButtomButtonWizard(
-        onNextPressed: () => {},
+        onNextPressed: () =>
+            {Navigator.pushNamed(context, AppConstant.pageHomePage)},
         onBackPressed: () => {Navigator.pop(context)},
         child: Scaffold(
             resizeToAvoidBottomPadding: false,

@@ -5,11 +5,14 @@ import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
 import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
 
 import '../../utils/app_constant.dart';
-import '../../utils/app_constant.dart';
 
 class SignupPageFirst extends StatefulWidget {
   @override
   _SignupPageFirstState createState() => _SignupPageFirstState();
+}
+
+class AdRuleException implements Exception {
+  String errorMessage() => "Adınızı Giriniz";
 }
 
 class _SignupPageFirstState extends State<SignupPageFirst> {
@@ -21,6 +24,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
   final soyadController = TextEditingController();
   bool isAdValid = true;
   bool isSoyadValid = true;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   TextFormField getAdField() {
     adField = TextFormField(
@@ -36,8 +40,8 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
           color: AppConstant.grey,
           fontSize: 3 * SizeConfig.textMultiplier),
       decoration: InputDecoration(
-          labelText: 'ADI',
-          //      errorText: isAdValid ? null : 'Adınız Giriniz',
+          labelText: 'AD',
+          // errorText: isAdValid ? null : 'Adınız Giriniz',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
               color: AppConstant.grey,

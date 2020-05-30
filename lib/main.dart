@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticaret_hfa_mobile/pages/homepage.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_first.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_fifth.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_second.dart';
@@ -27,13 +28,14 @@ class HfaApp extends StatelessWidget {
                 theme:
                     ThemeData(primarySwatch: Colors.blue, fontFamily: 'Gilroy'),
                 title: 'HFA Uygulaması',
-                initialRoute: AppConstant.pageSignUpFirst,
+                initialRoute: AppConstant.pageHomePage,
                 routes: {
                   AppConstant.pageSignUpFirst: (context) => SignupPageFirst(),
                   AppConstant.pageSignUpSecond: (context) => SignupPageSecond(),
                   AppConstant.pageSignUpThird: (context) => SignupPageThird(),
                   AppConstant.pageSignUpFourth: (context) => SignupPageForth(),
                   AppConstant.pageSignUpFifth: (context) => SignupPageFifth(),
+                  AppConstant.pageHomePage: (context) => HomePage(),
                 });
           },
         );
