@@ -28,7 +28,7 @@ class HfaApp extends StatelessWidget {
                 theme:
                     ThemeData(primarySwatch: Colors.blue, fontFamily: 'Gilroy'),
                 title: 'HFA Uygulaması',
-                initialRoute: AppConstant.pageHomePage,
+                initialRoute: AppConstant.pageSignUpFirst,
                 routes: {
                   AppConstant.pageSignUpFirst: (context) => SignupPageFirst(),
                   AppConstant.pageSignUpSecond: (context) => SignupPageSecond(),

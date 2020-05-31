@@ -122,11 +122,8 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                       shrinkWrap: true,
                       children: <Widget>[
                         SingleChildScrollView(
-                            padding: EdgeInsets.fromLTRB(
-                                1.5 * SizeConfig.heightMultiplier,
-                                0 * SizeConfig.heightMultiplier,
-                                0.0,
-                                0.0),
+                            padding: EdgeInsets.only(
+                                left: 1.5 * SizeConfig.heightMultiplier),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
@@ -156,38 +153,28 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                                     fontWeight:
                                                         FontWeight.w100),
                                               ))),
-                                      Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 0, 0,
-                                              2 * SizeConfig.textMultiplier),
-                                          child: Text(
-                                            ".",
-                                            maxLines: 1,
-                                            softWrap: false,
-                                            overflow: TextOverflow.fade,
-                                            textAlign: TextAlign.justify,
-                                            textScaleFactor:
-                                                SizeConfig.textMultiplier,
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontWeight: FontWeight.w800,
-                                                fontSize: 8),
-                                          )),
+                                      Text(
+                                        ".",
+                                        maxLines: 1,
+                                        softWrap: false,
+                                        overflow: TextOverflow.fade,
+                                        textAlign: TextAlign.justify,
+                                        textScaleFactor:
+                                            SizeConfig.textMultiplier,
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w800,
+                                            fontSize: 8),
+                                      ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 2 * SizeConfig.heightMultiplier,
-                                  ),
                                   Container(
-                                    padding: EdgeInsets.fromLTRB(
-                                        0, 0, 0, 2 * SizeConfig.textMultiplier),
+                                    // padding: EdgeInsets.fromLTRB(
+                                    //     0, 0, 0, 1 * SizeConfig.textMultiplier),
                                     width: width90,
                                     child: Column(
                                       children: <Widget>[
                                         getAdField(),
-                                        SizedBox(
-                                          height:
-                                              2 * SizeConfig.heightMultiplier,
-                                        ),
                                         getSoyadField(),
                                       ],
                                     ),

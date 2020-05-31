@@ -46,7 +46,9 @@ class _ButtomButtonWizardState extends State<ButtomButtonWizard> {
                             Icons.keyboard_arrow_left,
                             size: 30,
                           ),
-                          Text('Geri!', style: TextStyle(fontSize: 20))
+                          Text('Geri!',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold))
                         ],
                       ),
                       color: Colors.grey[300],
@@ -66,7 +68,9 @@ class _ButtomButtonWizardState extends State<ButtomButtonWizard> {
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Text('İleri', style: TextStyle(fontSize: 20)),
+                          Text('İleri',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold)),
                           Icon(
                             Icons.keyboard_arrow_right,
                             size: 30,

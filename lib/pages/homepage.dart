@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
-
 import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
+import 'package:ticaret_hfa_mobile/widgets/complaint_cards.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Flexible(
                                 child: Padding(
@@ -92,28 +92,11 @@ class _HomePageState extends State<HomePage> {
                                       overflow: TextOverflow.fade,
                                       style: TextStyle(
                                           color: AppConstant.grey,
-                                          fontSize: 5,
+                                          fontSize: 3,
                                           fontFamily: 'Gilroy',
-                                          fontWeight: FontWeight.w100),
+                                          fontWeight: FontWeight.bold),
                                     )),
                               ),
-
-                              // Expanded(
-                              //     child: new ListView(
-                              //   children: <Widget>[
-                              //     SizedBox(
-                              //       height: 2 * SizeConfig.heightMultiplier,
-                              //     ),
-                              //     Padding(
-                              //       padding: EdgeInsets.fromLTRB(
-                              //           3 * SizeConfig.widthMultiplier,
-                              //           0,
-                              //           0,
-                              //           0),
-                              //       child: ComplaintCards(),
-                              //     )
-                              //   ],
-                              // ))
                             ],
                           ),
                           SizedBox(
@@ -125,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                   child: new ListView.builder(
                       padding: EdgeInsets.fromLTRB(
                           1.5 * SizeConfig.heightMultiplier,
-                          6 * SizeConfig.heightMultiplier,
+                          0 * SizeConfig.heightMultiplier,
                           0.0,
                           0.0),
                       itemCount: litems.length,
@@ -142,40 +125,4 @@ class _HomePageState extends State<HomePage> {
           ),
         ));
   }
-}
-
-class ComplaintCards extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[complaintCardWidget()],
-    );
-  }
-}
-
-Widget complaintCardWidget() {
-  return Center(
-    child: Container(
-      child: Card(
-        color: Colors.white,
-        shape: (RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.0),
-        )),
-        margin: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-        elevation: 4,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const ListTile(
-              leading: Icon(Icons.apps),
-              title: Text("Tarih: 20.05.2020"),
-              subtitle: Text("Everva Bilişim A.Ş"),
-              trailing: Icon(Icons.navigate_next),
-              isThreeLine: true,
-            )
-          ],
-        ),
-      ),
-    ),
-  );
 }

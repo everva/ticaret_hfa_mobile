@@ -38,8 +38,8 @@ class TopClipShape extends StatelessWidget {
           ),
         ),
         Image.asset(
-          'assets/images/logo_gold.png',
-          height: SizeConfig.heightMultiplier * 18,
+          'assets/images/logo_gold_with_subtitle.png',
+          height: SizeConfig.heightMultiplier * 21,
           width: SizeConfig.width,
         ),
       ],
