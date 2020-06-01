@@ -2,36 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
-import 'package:ticaret_hfa_mobile/widgets/clip_shape.dart';
+import 'package:ticaret_hfa_mobile/widgets/clip_shape_second.dart';
 
-import '../../utils/app_constant.dart';
-
-class SignupPageFirst extends StatefulWidget {
+class CreateComplaint extends StatefulWidget {
   @override
-  _SignupPageFirstState createState() => _SignupPageFirstState();
+  _CreateComplaintState createState() => _CreateComplaintState();
 }
 
-class AdRuleException implements Exception {
-  String errorMessage() => "Adınızı Giriniz";
-}
-
-class _SignupPageFirstState extends State<SignupPageFirst> {
-  TextFormField adField;
-  TextFormField soyadField;
-  final FocusNode adFocus = FocusNode();
-  final FocusNode soyadFocus = FocusNode();
-  final adController = TextEditingController();
-  final soyadController = TextEditingController();
-  bool isAdValid = true;
-  bool isSoyadValid = true;
+class _CreateComplaintState extends State<CreateComplaint> {
+  TextFormField titleField;
+  TextFormField cityField;
+  final FocusNode titleFocus = FocusNode();
+  final FocusNode cityFocus = FocusNode();
+  final titleController = TextEditingController();
+  final cityController = TextEditingController();
+  bool isTitleValid = true;
+  bool isCityValid = true;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  TextFormField getAdField() {
-    adField = TextFormField(
+  TextFormField getTitleField() {
+    titleField = TextFormField(
       autofocus: true,
-      controller: adController,
+      controller: titleController,
       textInputAction: TextInputAction.next,
-      focusNode: adFocus,
+      focusNode: titleFocus,
       onFieldSubmitted: (term) {
         adNext();
       },
@@ -40,7 +34,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
           color: AppConstant.grey,
           fontSize: 3 * SizeConfig.textMultiplier),
       decoration: InputDecoration(
-          labelText: 'AD',
+          labelText: 'İŞLETME UNVANI',
           // errorText: isAdValid ? null : 'Adınız Giriniz',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
@@ -49,14 +43,14 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
     );
-    return adField;
+    return titleField;
   }
 
-  TextFormField getSoyadField() {
-    soyadField = TextFormField(
+  TextFormField getCityField() {
+    cityField = TextFormField(
       textInputAction: TextInputAction.done,
-      focusNode: soyadFocus,
-      controller: soyadController,
+      focusNode: cityFocus,
+      controller: cityController,
       onFieldSubmitted: (value) {
         adNext();
       },
@@ -65,7 +59,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
           color: AppConstant.grey,
           fontSize: 3 * SizeConfig.textMultiplier),
       decoration: InputDecoration(
-          labelText: 'SOYAD',
+          labelText: 'ŞEHİR',
           //    errorText: isSoyadValid ? null : 'Soyadınız Giriniz',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
@@ -74,7 +68,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
     );
-    return soyadField;
+    return cityField;
   }
 
   fieldFocusChange(
@@ -84,19 +78,19 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
   }
 
   adNext() {
-    isAdValid = adController.text.isNotEmpty;
+    isTitleValid = titleController.text.isNotEmpty;
 
-    if (adFocus.hasFocus) {
-      fieldFocusChange(context, adFocus, soyadFocus);
+    if (titleFocus.hasFocus) {
+      fieldFocusChange(context, titleFocus, cityFocus);
     } else {
-      isSoyadValid = soyadController.text.isNotEmpty;
-      if (isSoyadValid && isAdValid) {
-        soyadFocus.unfocus();
+      isCityValid = cityController.text.isNotEmpty;
+      if (isCityValid && isTitleValid) {
+        cityFocus.unfocus();
         Navigator.pushNamed(context, AppConstant.pageSignUpSecond);
       }
     }
-    print(isAdValid);
-    print(isSoyadValid);
+    print(isTitleValid);
+    print(isCityValid);
   }
 
   @override
@@ -106,8 +100,8 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
     return ButtomButtonWizard(
         onNextPressed: () => adNext(),
         onBackPressed: () => {
-              if (soyadFocus.hasFocus)
-                {fieldFocusChange(context, soyadFocus, adFocus)}
+              if (cityFocus.hasFocus)
+                {fieldFocusChange(context, cityFocus, titleFocus)}
             },
         child: new Scaffold(
             resizeToAvoidBottomPadding: false,
@@ -116,7 +110,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: <Widget>[
-                    TopClipShape(),
+                    TopClipShapeSecond(),
                     Expanded(
                         child: new ListView(
                       shrinkWrap: true,
@@ -140,7 +134,7 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                                   0,
                                                   0),
                                               child: Text(
-                                                'Kişisel Bilgileriniz',
+                                                'Şikayet Edilen',
                                                 maxLines: 1,
                                                 softWrap: false,
                                                 textScaleFactor:
@@ -153,19 +147,6 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                                     fontWeight:
                                                         FontWeight.w100),
                                               ))),
-                                      Text(
-                                        ".",
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.fade,
-                                        textAlign: TextAlign.justify,
-                                        textScaleFactor:
-                                            SizeConfig.textMultiplier,
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: 8),
-                                      ),
                                     ],
                                   ),
                                   Container(
@@ -174,8 +155,8 @@ class _SignupPageFirstState extends State<SignupPageFirst> {
                                     width: width90,
                                     child: Column(
                                       children: <Widget>[
-                                        getAdField(),
-                                        getSoyadField(),
+                                        getTitleField(),
+                                        getCityField(),
                                       ],
                                     ),
                                   )

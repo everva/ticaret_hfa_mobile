@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticaret_hfa_mobile/pages/createcomplaint/createcomplaint_first.dart';
 import 'package:ticaret_hfa_mobile/pages/homepage.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_first.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_fifth.dart';
@@ -36,6 +37,8 @@ class HfaApp extends StatelessWidget {
                   AppConstant.pageSignUpFourth: (context) => SignupPageForth(),
                   AppConstant.pageSignUpFifth: (context) => SignupPageFifth(),
                   AppConstant.pageHomePage: (context) => HomePage(),
+                  AppConstant.pageCreateComplaint: (context) =>
+                      CreateComplaint(),
                 });
           },
         );

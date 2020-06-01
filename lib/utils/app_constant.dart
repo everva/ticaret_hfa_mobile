@@ -10,4 +10,6 @@ class AppConstant {
   static final String pageHomePage = "/homepage";
 
   static final Color grey = Color.fromRGBO(79, 79, 97, 1);
+
+  static final String pageCreateComplaint = "/createcomplaint_first";
 }
