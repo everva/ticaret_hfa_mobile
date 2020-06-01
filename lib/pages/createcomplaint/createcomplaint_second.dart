@@ -2,46 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:ticaret_hfa_mobile/utils/app_constant.dart';
 import 'package:ticaret_hfa_mobile/utils/size_config.dart';
 import 'package:ticaret_hfa_mobile/widgets/buttom_button_wizard.dart';
+
 import 'package:ticaret_hfa_mobile/widgets/clip_shape_second.dart';
 
-class CreateComplaintFirst extends StatefulWidget {
+import '../../utils/app_constant.dart';
+
+class CreateComplaintSecond extends StatefulWidget {
   @override
-  _CreateComplaintFirstState createState() => _CreateComplaintFirstState();
+  _CreateComplaintSecondState createState() => _CreateComplaintSecondState();
 }
 
-class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
-  TextFormField titleField;
-  TextFormField cityField;
-  TextFormField districtField;
-  TextFormField neighborhoodField;
-  TextFormField streetField;
-  TextFormField buildingNoField;
-  final FocusNode titleFocus = FocusNode();
-  final FocusNode cityFocus = FocusNode();
-  final FocusNode districtFocus = FocusNode();
-  final FocusNode neighborhoodFocus = FocusNode();
-  final FocusNode streetFocus = FocusNode();
-  final FocusNode buildingNoFocus = FocusNode();
-  final titleController = TextEditingController();
-  final cityController = TextEditingController();
-  final districtController = TextEditingController();
-  final neighborhoodController = TextEditingController();
-  final streetController = TextEditingController();
-  final buildingNoController = TextEditingController();
-  bool isTitleValid = true;
-  bool isCityValid = true;
-  bool isDistrictValid = true;
-  bool isneighborhoodValid = true;
-  bool isstreetValid = true;
-  bool isbuildNoValid = true;
+class _CreateComplaintSecondState extends State<CreateComplaintSecond> {
+  TextFormField categoryField;
+  TextFormField trademarkField;
+  TextFormField explanationField;
+  final FocusNode categoryFocus = FocusNode();
+  final FocusNode trademarkFocus = FocusNode();
+  final FocusNode explanationFocus = FocusNode();
+  final categoryController = TextEditingController();
+  final trademarkController = TextEditingController();
+  final explanationController = TextEditingController();
+  bool iscategoryValid = true;
+  bool istrademarkValid = true;
+  bool iexplanationValid = true;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  TextFormField getTitleField() {
-    titleField = TextFormField(
+  TextFormField getcategoryField() {
+    categoryField = TextFormField(
       autofocus: true,
-      controller: titleController,
+      controller: categoryController,
       textInputAction: TextInputAction.next,
-      focusNode: titleFocus,
+      focusNode: categoryFocus,
       onFieldSubmitted: (term) {
         adNext();
       },
@@ -50,8 +41,7 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
           color: AppConstant.grey,
           fontSize: 3 * SizeConfig.textMultiplier),
       decoration: InputDecoration(
-          labelText: 'İŞLETME UNVANI',
-          // errorText: isAdValid ? null : 'Adınız Giriniz',
+          labelText: 'KATEGORİ',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
               color: AppConstant.grey,
@@ -59,14 +49,14 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
     );
-    return titleField;
+    return categoryField;
   }
 
-  TextFormField getCityField() {
-    cityField = TextFormField(
-      textInputAction: TextInputAction.next,
-      focusNode: cityFocus,
-      controller: cityController,
+  TextFormField gettrademarkField() {
+    trademarkField = TextFormField(
+      textInputAction: TextInputAction.done,
+      focusNode: trademarkFocus,
+      controller: trademarkController,
       onFieldSubmitted: (value) {
         adNext();
       },
@@ -75,7 +65,7 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
           color: AppConstant.grey,
           fontSize: 3 * SizeConfig.textMultiplier),
       decoration: InputDecoration(
-          labelText: 'ŞEHİR',
+          labelText: 'MARKA',
           //    errorText: isSoyadValid ? null : 'Soyadınız Giriniz',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
@@ -84,93 +74,25 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
     );
-    return cityField;
+    return trademarkField;
   }
 
-  TextFormField getDistrictField() {
-    districtField = TextFormField(
-      textInputAction: TextInputAction.next,
-      focusNode: districtFocus,
-      controller: districtController,
-      onFieldSubmitted: (value) {
-        adNext();
-      },
-      style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: AppConstant.grey,
-          fontSize: 3 * SizeConfig.textMultiplier),
-      decoration: InputDecoration(
-          labelText: 'İLÇE',
-          labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppConstant.grey,
-              fontSize: 20),
-          focusedBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
-    );
-    return districtField;
-  }
-
-  TextFormField getNeighborhoodField() {
-    neighborhoodField = TextFormField(
-      textInputAction: TextInputAction.next,
-      focusNode: neighborhoodFocus,
-      controller: neighborhoodController,
-      onFieldSubmitted: (value) {
-        adNext();
-      },
-      style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: AppConstant.grey,
-          fontSize: 3 * SizeConfig.textMultiplier),
-      decoration: InputDecoration(
-          labelText: 'MAHALLE',
-          labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppConstant.grey,
-              fontSize: 20),
-          focusedBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
-    );
-    return neighborhoodField;
-  }
-
-  TextFormField getStreetField() {
-    streetField = TextFormField(
-      textInputAction: TextInputAction.next,
-      focusNode: streetFocus,
-      controller: streetController,
-      onFieldSubmitted: (value) {
-        adNext();
-      },
-      style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: AppConstant.grey,
-          fontSize: 3 * SizeConfig.textMultiplier),
-      decoration: InputDecoration(
-          labelText: 'CADDE/SOKAK',
-          labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppConstant.grey,
-              fontSize: 20),
-          focusedBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
-    );
-    return streetField;
-  }
-
-  TextFormField getBuildingNoField() {
-    buildingNoField = TextFormField(
+  TextFormField getexplanationField() {
+    explanationField = TextFormField(
       textInputAction: TextInputAction.done,
-      focusNode: buildingNoFocus,
-      controller: buildingNoController,
-      onFieldSubmitted: (value) {},
+      maxLines: 2,
+      focusNode: explanationFocus,
+      controller: explanationController,
+      onFieldSubmitted: (value) {
+        adNext();
+      },
       style: TextStyle(
           fontWeight: FontWeight.bold,
           color: AppConstant.grey,
           fontSize: 3 * SizeConfig.textMultiplier),
       decoration: InputDecoration(
-          labelText: 'BİNA/KAPI NO',
+          labelText: 'AÇIKLAMA',
+          //    errorText: isSoyadValid ? null : 'Soyadınız Giriniz',
           labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
               color: AppConstant.grey,
@@ -178,7 +100,7 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
     );
-    return buildingNoField;
+    return explanationField;
   }
 
   fieldFocusChange(
@@ -188,23 +110,19 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
   }
 
   adNext() {
-    isTitleValid = titleController.text.isNotEmpty;
+    iscategoryValid = categoryController.text.isNotEmpty;
 
-    if (titleFocus.hasFocus) {
-      fieldFocusChange(context, titleFocus, cityFocus);
+    if (categoryFocus.hasFocus) {
+      fieldFocusChange(context, categoryFocus, trademarkFocus);
     } else {
-      isCityValid = cityController.text.isNotEmpty;
-      if (isCityValid && isTitleValid) {
-        cityFocus.unfocus();
-        Navigator.pushNamed(context, AppConstant.pageCreateComplaintSecond);
+      istrademarkValid = trademarkController.text.isNotEmpty;
+      if (istrademarkValid && iscategoryValid) {
+        trademarkFocus.unfocus();
+        Navigator.pushNamed(context, AppConstant.pageHomePage);
       }
     }
-    print(isTitleValid);
-    print(isCityValid);
-    print(isDistrictValid);
-    print(isneighborhoodValid);
-    print(isstreetValid);
-    print(isbuildNoValid);
+    print(iscategoryValid);
+    print(istrademarkValid);
   }
 
   @override
@@ -214,8 +132,8 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
     return ButtomButtonWizard(
         onNextPressed: () => adNext(),
         onBackPressed: () => {
-              if (cityFocus.hasFocus)
-                {fieldFocusChange(context, cityFocus, titleFocus)}
+              if (trademarkFocus.hasFocus)
+                {fieldFocusChange(context, trademarkFocus, categoryFocus)}
             },
         child: new Scaffold(
             resizeToAvoidBottomPadding: false,
@@ -248,7 +166,7 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
                                                   0,
                                                   0),
                                               child: Text(
-                                                'Şikayet Edilen',
+                                                'Şikayet Konusu',
                                                 maxLines: 1,
                                                 softWrap: false,
                                                 textScaleFactor:
@@ -269,12 +187,9 @@ class _CreateComplaintFirstState extends State<CreateComplaintFirst> {
                                     width: width90,
                                     child: Column(
                                       children: <Widget>[
-                                        getTitleField(),
-                                        getCityField(),
-                                        getDistrictField(),
-                                        getNeighborhoodField(),
-                                        getStreetField(),
-                                        getBuildingNoField(),
+                                        getcategoryField(),
+                                        gettrademarkField(),
+                                        getexplanationField(),
                                         SizedBox(
                                           height:
                                               10 * SizeConfig.heightMultiplier,

@@ -45,8 +45,9 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
-          onPressed: () =>
-              {Navigator.pushNamed(context, AppConstant.pageCreateComplaint)},
+          onPressed: () => {
+            Navigator.pushNamed(context, AppConstant.pageCreateComplaintFirst)
+          },
           child: Icon(Icons.add),
           foregroundColor: Colors.blueAccent,
           backgroundColor: Colors.orange[100],

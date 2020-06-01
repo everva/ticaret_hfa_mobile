@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticaret_hfa_mobile/pages/createcomplaint/createcomplaint_first.dart';
+import 'package:ticaret_hfa_mobile/pages/createcomplaint/createcomplaint_second.dart';
 import 'package:ticaret_hfa_mobile/pages/homepage.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_first.dart';
 import 'package:ticaret_hfa_mobile/pages/signup/signup_fifth.dart';
@@ -29,7 +30,7 @@ class HfaApp extends StatelessWidget {
                 theme:
                     ThemeData(primarySwatch: Colors.blue, fontFamily: 'Gilroy'),
                 title: 'HFA Uygulaması',
-                initialRoute: AppConstant.pageSignUpFirst,
+                initialRoute: AppConstant.pageCreateComplaintSecond,
                 routes: {
                   AppConstant.pageSignUpFirst: (context) => SignupPageFirst(),
                   AppConstant.pageSignUpSecond: (context) => SignupPageSecond(),
@@ -37,8 +38,10 @@ class HfaApp extends StatelessWidget {
                   AppConstant.pageSignUpFourth: (context) => SignupPageForth(),
                   AppConstant.pageSignUpFifth: (context) => SignupPageFifth(),
                   AppConstant.pageHomePage: (context) => HomePage(),
-                  AppConstant.pageCreateComplaint: (context) =>
-                      CreateComplaint(),
+                  AppConstant.pageCreateComplaintFirst: (context) =>
+                      CreateComplaintFirst(),
+                  AppConstant.pageCreateComplaintSecond: (context) =>
+                      CreateComplaintSecond(),
                 });
           },
         );
